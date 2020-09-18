@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Home/Home.css';
-import TuristPointData from '../TuristPointData/TuristPointData';
+import TuristPointData from '../FakeData/TuristPointData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 

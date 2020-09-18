@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { handleGoogleSignIn, handleFacebookSignIn, initializeFirebase, createUser, signInEmailPass } from '../FirebaseAuth/FirebaseAuth'
+import { userContex } from '../Home/Home';
 import '../Home/Home.css'
 
+initializeFirebase()
 
 const Login = () => {
-
     //Login perpuse...
+    const [loggedInUser, setLoggedInUser] =useContext(userContex)
     const [resistered, setResistered] = useState(true)
     const [newuser, setNewuser] = useState({ name: '', email: '', pass: '', confirmPass: '' })
     const [errorMessage, setErrorMessage] = useState('')
@@ -48,15 +51,37 @@ const Login = () => {
     //Sign in & Sign Up Form Submit..... 
     const handleSubmit = event =>{
 
-        if(resistered){
+            if(!resistered){
+                createUser(newuser.email, newuser.pass)
+                .then(message =>{ 
+                    setErrorMessage("Account Created Successfully")
+                    setResistered(true)
+                })
+                .catch(error => setErrorMessage(error))
+            }
+                
+            if(resistered){
+                signInEmailPass(newuser.email, newuser.pass)
+                .then(message => setErrorMessage("Login Successfull"))
+                .catch(error => setErrorMessage(error))
+            }
 
-        }else if(!resistered){
-            
-        }
-        
-        
         event.preventDefault()
     }
+
+    //Google sign in....
+    const googleLogin =() =>{
+        handleGoogleSignIn()
+        .then(result => setLoggedInUser(result))
+    }
+
+    //Facebook Sign in...
+    const facebookLogin = () =>{
+        handleFacebookSignIn()
+        .then(result => setLoggedInUser(result))
+        
+    }
+
 
 
     return (
@@ -72,8 +97,8 @@ const Login = () => {
                                 <div className="card-body">
                                     <input onBlur={handleBlur} required name='email' type='email' className='form-control mt-2' placeholder='Email' />
                                     <input onBlur={handleBlur} required name='pass' type='password' className='form-control mt-2' placeholder='Password' />
-                                    <button className='btn btn-warning btn-sm font-weight-bold'>Submit</button>
-                                    <p className='text-small'>Create New Account ? <button onClick={() => setResistered(false)} className='btn btn-info btn-sm'>Sign Up</button></p>
+                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Submit</button>
+                                    <p className='text-small'>Create New Account ? <button onClick={() => setResistered(false)} className='btn btn-info btn-sm mt-2'>Sign Up</button></p>
                                 </div>
                             </form>
                             :
@@ -84,14 +109,14 @@ const Login = () => {
                                     <input onBlur={handleBlur} required name='email' type='email' className='form-control mt-2' placeholder='Email' />
                                     <input onBlur={handleBlur} required name='pass' type='password' className='form-control mt-2' placeholder='Password' />
                                     <input onBlur={handleBlur} required name='confirmPass' type='password' className='form-control mt-2' placeholder='Confirm Password' />
-                                    <button className='btn btn-warning btn-sm font-weight-bold'>Submit</button>
-                                    <p className='text-small'>Already have an Account ? <button onClick={() => setResistered(true)} className='btn btn-info btn-sm'>Sign In</button></p>
+                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Submit</button>
+                                    <p className='text-small'>Already have an Account ? <button onClick={() => setResistered(true)} className='btn btn-info btn-sm mt-2'>Sign In</button></p>
                                 </div>
                             </form>
                     }
                     <div className="card-footer d-flex justify-content-between">
-                        <button className='btn btn-light rounded btn-sm font-weight-bold'><span className='pr-1'><img height='15' src="https://i.ibb.co/9vjdGtz/google.png" alt="" /></span> Continue With Google</button>
-                        <button className='btn btn-light rounded btn-sm font-weight-bold'><span className='pr-1'><img height='15' src="https://i.ibb.co/4StbQ8J/fb.png" alt="" /></span>  Continue With Facebook</button>
+                        <button onClick={googleLogin} className='btn btn-light rounded btn-sm font-weight-bold'><span className='pr-1'><img height='15' src="https://i.ibb.co/9vjdGtz/google.png" alt="" /></span> Continue With Google</button>
+                        <button onClick={facebookLogin} className='btn btn-light rounded btn-sm font-weight-bold'><span className='pr-1'><img height='15' src="https://i.ibb.co/4StbQ8J/fb.png" alt="" /></span>  Continue With Facebook</button>
                     </div>
                 </div>
             </div>
