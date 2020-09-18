@@ -1,35 +1,54 @@
-import React from 'react';
-import '../Home/Home.css';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import TuristPointData from '../FakeData/TuristPointData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import '../Home/Home.css'
 
 const Booking = () => {
+    
+    const [resort, setResort] = useState({})
+    const {id} = useParams()
+    useEffect(()=>{
+         setResort(TuristPointData.find(data => data.id ===parseInt(id)))
+    },[])
+       
     return (
-        <div className='backgroundIamge container-fluid'>
-            <div className="row p-5">
-
-                <div className="col-md-4">
-                    <h2 className="text-light display-4 font-weight-bold">Cox's Bazar </h2>
-                    <p className='lead text-justify text-light'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit in quia iste perspiciatis, voluptas quidem reprehenderit excepturi mollitia voluptatibus deserunt eveniet sint quos minima doloribus nam dolores nihil voluptatum ipsa?</p>
-                    <button className='btn btn-warning btn-md'>Book Now <FontAwesomeIcon icon={faArrowRight} /> </button>
-                </div>
-
-                <div className="col-md-8">
-                    <div className="row">
-                    {TuristPointData.map(data =>
-                        <div className="col-md-4">
-                            <div className="card bg-dark text-white">
-                                <img height='350' className="card-img" src={data.image} alt=""></img>
-                                <div className="card-img-overlay d-flex align-items-end ">
-                                    <h4 className="card-title text-center font-weight-bold d-flex align-items-end">{data.title}</h4>
+        <div className='backgroundIamge'>
+                <div className="container">
+                    <div className='row p-5'>
+                        <div className="col-md-5">
+                            <h2 className="text-light display-4 font-weight-bold">{resort.title}</h2>
+                            <p className=' text-justify text-light'>{resort.description}</p>
+                        </div>
+                        <div className="col-md-6">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label htmlFor="">Origin</label>
+                                    <input type='text' className='form-control' value='Dhaka' ></input>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="">Destination</label>
+                                    <input type='text' className='form-control' value={resort.title}></input>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label htmlFor="">From</label>
+                                            <input type='date' className='form-control' required></input>
+                                        </div></div>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label htmlFor="">To</label>
+                                            <input type='date' className='form-control'required ></input>
+                                        </div>
+                                    </div>
+                                    <Link className="btn btn-block btn-warning text-light" to={'/contract/'+resort.id}>Book Order</Link>
                                 </div>
                             </div>
                         </div>
-                    )}
+                    </div>
                     </div>
                 </div>
-            </div>
         </div>
     );
 };
