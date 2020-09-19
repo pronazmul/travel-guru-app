@@ -8,7 +8,7 @@ const Booking = () => {
     const [resort, setResort] = useState({})
     const {id} = useParams()
     useEffect(()=>{
-         setResort(TuristPointData.find(data => data.id ===parseInt(id)))
+         setResort(TuristPointData.find(data => data.id === parseInt(id)))
     },[])
        
     return (
