@@ -1,6 +1,6 @@
 .backgroundIamge{
     background-image: url('../../Components//images/turistpoints/homeBackground.png');
     background-size: cover;
-    height: 89vh;
+    height: 100vh;
     background-position: center;
 }

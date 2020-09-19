@@ -19,7 +19,7 @@ const handleResort = id =>{
 }
     return (
         <div className='backgroundIamge container-fluid'>
-            <div className="row p-5">
+            <div className="px-5 h-100 row d-flex align-items-center justify-content-center">
 
                 <div className="col-md-4 pt-5">
                     <h2 className="text-light display-4 font-weight-bold">{resort.title}</h2>

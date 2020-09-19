@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react';
-// import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { useParams } from 'react-router-dom';
-// import MapData from '../FakeData/MapData';
+import RoomDetails from '../FakeData/RoomDetails';
+import TuristPointData from '../FakeData/TuristPointData';
 
 const Contract = () => {
-
-    const [mapData, setMapData] = useState({})
-    const {id} = useParams()
-    useEffect(()=>{
-        // setMapData(MapData.find(data => data.id === parseInt(id)))
-    },[])
-    const { latitude, longitude } =mapData;
+    //Room Details Data Management....
+    const [details, setDetails] = useState({})
+    const { id } = useParams()
+    useEffect(() => {
+        setDetails(TuristPointData.find(data => data.id === parseInt(id)))
+    }, [])
 
     return (
         <div className='backgroundIamge'>
-            <div className="row">
-                <div className="col-md-6"></div>
+            <div className="container row h-100 d-flex align-items-center justify-content-center">
                 <div className="col-md-6">
-                    <h1 class = 'text-light'>This is Protected page Page</h1>
-                
+                    <h2 className='text-center font-width-bold text-light'>Stay In {details.title}</h2>
+                    <div className="row"></div>
+                        {RoomDetails.map(data => 
+                                    <div className="col-md-6">
+                                        <img src={data.url} alt="" height='200'></img>
+                                    </div>
+                                    <div className="col-md-6">
+                                        
+                                    </div>
+                            )}
+
+                        </div>
+                    </div>
+                <div className="col-md-6">
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../Components/images/Logo.png'
 const Navbar = () => {
     return (
-            <nav className="navbar navbar-expand-lg navbar-light px-5">
+            <nav className="navbar navbar-expand-lg fixed-top px-5">
                 <Link className="navbar-brand" to="/">
                     <img width='100' src={logo} alt=''></img>
                 </Link>
@@ -14,10 +14,10 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse d-block " id="navbarNav">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link mr-3" to="/">Home</Link>
+                            <Link className="nav-link mr-3 font-width-bold btn btn-outline-warning" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link mr-3" to="/login">Login</Link>
+                            <Link className="nav-link mr-3 font-width-bold btn btn-outline-warning" to="/login">Login</Link>
                         </li>
                     </ul>
                 </div>

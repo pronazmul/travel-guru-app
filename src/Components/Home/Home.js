@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import Navbar from '../Navbar/Navbar';
 import Booking from '../Booking/Booking';
 import Contract from '../Contract/Contract';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 export const userContex = createContext()
 const Home = () => {
@@ -19,7 +20,6 @@ const Home = () => {
         <userContex.Provider value ={[loggedInUser, setLoggedInUser]}>
         <Router>
                 <Navbar></Navbar>
-                {loggedInUser.email && <h1>User Email: {loggedInUser.email}</h1>}
                 <Switch>
                   <Route exact path="/">
                     <Resort></Resort>
@@ -33,9 +33,9 @@ const Home = () => {
                     <Login></Login>
                   </Route>
 
-                  <Route path="/contract/:id">
+                  <PrivateRoute path="/contract/:id">
                     <Contract></Contract>
-                  </Route>
+                  </PrivateRoute>
                 </Switch>
         </Router>
         </userContex.Provider>

@@ -2,10 +2,16 @@ import React, { useContext, useState } from 'react';
 import { handleGoogleSignIn, handleFacebookSignIn, initializeFirebase, createUser, signInEmailPass } from '../FirebaseAuth/FirebaseAuth'
 import { userContex } from '../Home/Home';
 import '../Home/Home.css'
+import { useHistory, useLocation } from 'react-router-dom'
+
 
 initializeFirebase()
 
 const Login = () => {
+    // Private route purpose
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } }
     //Login perpuse...
     const [loggedInUser, setLoggedInUser] =useContext(userContex)
     const [resistered, setResistered] = useState(true)
@@ -56,14 +62,19 @@ const Login = () => {
                 .then(message =>{ 
                     setErrorMessage("Account Created Successfully")
                     setResistered(true)
+                    history.replace(from)
                 })
                 .catch(error => setErrorMessage(error))
             }
                 
             if(resistered){
                 signInEmailPass(newuser.email, newuser.pass)
-                .then(message => setErrorMessage("Login Successfull"))
+                .then(message => {
+                    setErrorMessage("Login Successfull")
+                    history.replace(from)                    
+                })
                 .catch(error => setErrorMessage(error))
+                
             }
 
         event.preventDefault()
@@ -72,13 +83,19 @@ const Login = () => {
     //Google sign in....
     const googleLogin =() =>{
         handleGoogleSignIn()
-        .then(result => setLoggedInUser(result))
+        .then(result => {
+            setLoggedInUser(result)
+            history.replace(from) 
+        })
     }
 
     //Facebook Sign in...
     const facebookLogin = () =>{
         handleFacebookSignIn()
-        .then(result => setLoggedInUser(result))
+        .then(result => {
+            setLoggedInUser(result)
+            history.replace(from) 
+        })
         
     }
 

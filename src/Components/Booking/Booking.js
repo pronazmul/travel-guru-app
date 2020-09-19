@@ -13,8 +13,7 @@ const Booking = () => {
        
     return (
         <div className='backgroundIamge'>
-                <div className="container">
-                    <div className='row p-5'>
+                <div className="w-75 h-100 mx-auto row d-flex align-items-center justify-content-center">
                         <div className="col-md-5">
                             <h2 className="text-light display-4 font-weight-bold">{resort.title}</h2>
                             <p className=' text-justify text-light'>{resort.description}</p>
@@ -46,7 +45,6 @@ const Booking = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
         </div>
