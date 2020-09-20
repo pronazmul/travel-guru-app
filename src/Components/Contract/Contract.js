@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import RoomDetails from '../FakeData/RoomDetails';
 import TuristPointData from '../FakeData/TuristPointData';
 import icon from '../images/Icon/star_1_.png'
+import googleMap from './googleMap';
 
 const Contract = () => {
     //Room Details Data Management....
@@ -41,6 +42,11 @@ const Contract = () => {
                     }
                 </div>
                 <div className="col-md-6">
+                    <div className="card">
+                        <div className="card-body">
+                            <googleMap></googleMap>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
