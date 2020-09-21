@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.map {
+  height: 80vh;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-top: 16px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.map .leaflet-container {
+  height: 100%;
+  border-radius: 12px;
+}
