@@ -51,7 +51,7 @@ const Login = () => {
            validUser[event.target.name] = event.target.value
            setNewuser(validUser)
        }
-       console.log(newuser)
+    //    console.log(newuser)
     }
 
     //Sign in & Sign Up Form Submit..... 
@@ -98,8 +98,6 @@ const Login = () => {
         })
         
     }
-
-
 
     return (
         <div className='backgroundIamge d-flex align-items-center justify-content-center'>
