@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
 import logo from '../../Components/images/Logo.png'
+import { userContex } from '../Home/Home';
 const Navbar = () => {
+    //Contex Api used to show user
+    const [loggedInUser, setLoggedInUser] =useContext(userContex)
+
     return (
             <nav className="navbar navbar-expand-lg fixed-top px-5">
                 <Link className="navbar-brand" to="/">
@@ -13,6 +17,9 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse d-block " id="navbarNav">
                     <ul className="navbar-nav ml-auto">
+                            {loggedInUser.isSignIn&& 
+                            <h4 className='text-warning pr-4'>Welcome {loggedInUser.name}</h4>
+                            }
                         <li className="nav-item">
                             <Link className="nav-link mr-3 font-width-bold btn btn-outline-warning" to="/">Home</Link>
                         </li>

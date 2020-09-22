@@ -41,25 +41,30 @@ export const handleFacebookSignIn = () => {
         })
 }
 
+//Sign In With User Name & Password...
+export const signInEmailPass = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(res =>  {
+            const { displayName, email} = res.user
+            const userData = {
+                isSignIn: true,
+                name: displayName,
+                email: email
+            }
+            return userData
+        })
+        .catch(error => {return error.message}) 
+}
+
 //Create User With Email & Password.....
 export const createUser = (email, password, name) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(success => {
             const user = firebase.auth().currentUser
             user.updateProfile({displayName:name})
-            return success.message      
+            return success.message    
         })
         .catch(error => {return error.message})  
-}
-
-//Update User info
-
-
-//Sign In With User Name & Password...
-export const signInEmailPass = (email, password) => {
-    return firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(success => {return success.message})
-        .catch(error => {return error.message}) 
 }
 
 const FirebaseAuth = () => {

@@ -12,6 +12,7 @@ const Login = () => {
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } }
+    
     //Login perpuse...
     const [loggedInUser, setLoggedInUser] =useContext(userContex)
     const [resistered, setResistered] = useState(true)
@@ -69,8 +70,8 @@ const Login = () => {
                 
             if(resistered){
                 signInEmailPass(newuser.email, newuser.pass)
-                .then(message => {
-                    setErrorMessage("Login Successfull")
+                .then(res => {
+                    setLoggedInUser(res)
                     history.replace(from)                    
                 })
                 .catch(error => setErrorMessage(error))
@@ -93,8 +94,8 @@ const Login = () => {
     const facebookLogin = () =>{
         handleFacebookSignIn()
         .then(result => {
-            setLoggedInUser(result)
-            history.replace(from) 
+            setLoggedInUser(result) 
+            history.replace(from)             
         })
         
     }
@@ -112,7 +113,7 @@ const Login = () => {
                                 <div className="card-body">
                                     <input onBlur={handleBlur} required name='email' type='email' className='form-control mt-2' placeholder='Email' />
                                     <input onBlur={handleBlur} required name='pass' type='password' className='form-control mt-2' placeholder='Password' />
-                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Submit</button>
+                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Login</button>
                                     <p className='text-small'>Create New Account ? <button onClick={() => setResistered(false)} className='btn btn-info btn-sm mt-2'>Sign Up</button></p>
                                 </div>
                             </form>
@@ -124,7 +125,7 @@ const Login = () => {
                                     <input onBlur={handleBlur} required name='email' type='email' className='form-control mt-2' placeholder='Email' />
                                     <input onBlur={handleBlur} required name='pass' type='password' className='form-control mt-2' placeholder='Password' />
                                     <input onBlur={handleBlur} required name='confirmPass' type='password' className='form-control mt-2' placeholder='Confirm Password' />
-                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Submit</button>
+                                    <button className='btn btn-warning btn-sm font-weight-bold mt-2'>Create Acc</button>
                                     <p className='text-small'>Already have an Account ? <button onClick={() => setResistered(true)} className='btn btn-info btn-sm mt-2'>Sign In</button></p>
                                 </div>
                             </form>

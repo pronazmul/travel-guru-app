@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RoomDetails from '../FakeData/RoomDetails';
 import TuristPointData from '../FakeData/TuristPointData';
+import { userContex } from '../Home/Home';
 import icon from '../images/Icon/star_1_.png'
 import ReactMap from './ReactMap';
 
 const Contract = () => {
+    
+    const [loggedInUser, setLoggedInUser] =useContext(userContex)
+
     //Room Details Data Management....
     const [details, setDetails] = useState({})
     const { id } = useParams()
@@ -17,7 +21,7 @@ const Contract = () => {
         <div className='backgroundIamge'>
             <div className="container row h-100 d-flex align-items-center justify-content-center px-4">
                 <div className="col-md-6">
-                    <h4 className='text-center font-width-bold text-light'>Stay In {details.title}</h4>
+                    <h4 className='text-center font-width-bold text-light'>Stay In {details.title}</h4><hr/>
                     {
                         RoomDetails.map(data =>
                             <div className="row">
