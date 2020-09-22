@@ -32,7 +32,6 @@ const Navbar = () => {
                             <Link className="nav-link mr-3 font-width-bold btn btn-outline-warning" to="/login">Login</Link>
                         </li>
                     }
-
                 </ul>
             </div>
         </nav>
