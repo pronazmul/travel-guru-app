@@ -1,0 +1,5 @@
+Site Info
+
+Live Site URL: https://travel-guru-app-6d751.web.app
+GitHub Repository URL: 
+Hosting URL: https://console.firebase.google.com/project/travel-guru-app-6d751/overview
