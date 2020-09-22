@@ -42,11 +42,18 @@ export const handleFacebookSignIn = () => {
 }
 
 //Create User With Email & Password.....
-export const createUser = (email, password) => {
+export const createUser = (email, password, name) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(success => {return success.message})
+        .then(success => {
+            const user = firebase.auth().currentUser
+            user.updateProfile({displayName:name})
+            return success.message      
+        })
         .catch(error => {return error.message})  
 }
+
+//Update User info
+
 
 //Sign In With User Name & Password...
 export const signInEmailPass = (email, password) => {

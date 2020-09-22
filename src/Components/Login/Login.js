@@ -58,7 +58,7 @@ const Login = () => {
     const handleSubmit = event =>{
 
             if(!resistered){
-                createUser(newuser.email, newuser.pass)
+                createUser(newuser.email, newuser.pass, newuser.name)
                 .then(message =>{ 
                     setErrorMessage("Account Created Successfully")
                     setResistered(true)
