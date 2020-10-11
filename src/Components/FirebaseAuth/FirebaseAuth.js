@@ -74,6 +74,6 @@ const FirebaseAuth = () => {
 
         </div>
     );
-};
+}; 
 
 export default FirebaseAuth;
