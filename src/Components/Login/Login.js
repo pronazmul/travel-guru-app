@@ -30,7 +30,7 @@ const Login = () => {
         if (event.target.name === 'email') {
             validData = /\S+@\S+\.\S+/.test(event.target.value)
             if (validData) { setErrorMessage('') }
-            else { setErrorMessage('Invalid Email Address') }
+            else { setErrorMessage('Invalid Email Address') } 
         }
         if (event.target.name === 'pass') {
             validData = /^(?=.*[0-9])(?=(?:[^A-Z]*[A-Z]){1})(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,12}$/.test(event.target.value)
