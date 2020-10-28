@@ -1,7 +1,7 @@
-# Travel Guru Full Stack Application
+# Travel Guru Client Side Application
 
 ## About
-Online Tour Booking System Full Stack MERN Project.  
+Online Tour Booking System Client Side Project.  
 [Live-Site](https://travel-guru-app-6d751.web.app)
 
 ## Features
