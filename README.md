@@ -1,7 +1,7 @@
-# Travel Guru Client Side Application
+# Travel Guru User Interface Application
 
 ## About
-Online Tour Booking System Client Side Project.  
+Online Tour Booking System User Interface Project.  
 [Live-Site](https://travel-guru-app-6d751.web.app)
 
 ## Features
